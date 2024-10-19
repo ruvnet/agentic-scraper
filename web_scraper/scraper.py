@@ -5,6 +5,7 @@ from playwright.async_api import async_playwright
 from .models import ScraperConfig, ScrapedContent
 from .utils import check_robots_txt
 from .parser import parse_html
+from urllib.parse import urlparse
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -29,8 +30,12 @@ async def scrape_website(config: ScraperConfig) -> ScrapedContent:
             await browser.close()
 
     title, content, links = parse_html(html_content, url)
+    
+    # Filter out invalid URLs
+    valid_links = [link for link in links if urlparse(link).scheme in ['http', 'https']]
+    
     logger.info(f"Successfully scraped {url}")
-    return ScrapedContent(url=url, title=title, content=content, links=links)
+    return ScrapedContent(url=url, title=title, content=content, links=valid_links)
 
 async def scrape_concurrent(config: ScraperConfig) -> List[ScrapedContent]:
     semaphore = asyncio.Semaphore(config.concurrency)

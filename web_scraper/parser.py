@@ -1,6 +1,13 @@
 from bs4 import BeautifulSoup
 from typing import List, Tuple
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
+
+def is_valid_url(url: str) -> bool:
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
 
 def parse_html(html: str, base_url: str) -> Tuple[str, str, List[str]]:
     soup = BeautifulSoup(html, 'html.parser')
@@ -13,7 +20,8 @@ def parse_html(html: str, base_url: str) -> Tuple[str, str, List[str]]:
     
     links = [link.get('href') for link in soup.find_all('a') if link.get('href')]
     
-    # Resolve relative URLs
+    # Resolve relative URLs and filter out invalid ones
     links = [urljoin(base_url, link) for link in links]
+    links = [link for link in links if is_valid_url(link)]
     
     return title, main_content, links
