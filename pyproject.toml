@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "web-scraper-cli"
+name = "web_scraper"
 version = "0.1.0"
 description = "A CLI-based web scraper"
 authors = ["Your Name <your.email@example.com>"]
