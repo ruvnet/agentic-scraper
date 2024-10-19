@@ -1,94 +1,76 @@
-# FastAPI Web Scraper
+# Agentic Scraper
 
-## Introduction
-
-This FastAPI-based web scraper is an advanced, asynchronous web scraping solution that leverages the power of FastAPI, Pydantic, and asynchronous programming. It provides a robust API for web scraping tasks, PDF/HTML processing, proxy configuration, and search history retrieval.
-
-## Features
-
-- Asynchronous web scraping with customizable parameters
-- PDF and HTML file processing
-- Proxy server configuration
-- Search history tracking
-- Pydantic models for request and response validation
-- FastAPI for high-performance API endpoints
+This project consists of two main components:
+1. A CLI-based web scraper
+2. A FastAPI-based web scraping API
 
 ## Installation
 
 1. Ensure you have Python 3.9+ installed.
-2. Install Redis server (used for rate limiting).
-3. Clone the repository:
+2. Clone the repository:
    ```
-   git clone https://github.com/yourusername/fastapi-web-scraper.git
-   cd fastapi-web-scraper
+   git clone https://github.com/ruvnet/agentic-scraper.git
+   cd agentic-scraper
    ```
-4. Install dependencies:
+3. Install dependencies:
    ```
-   poetry install
+   ./install.sh
    ```
 
-## Usage
+## Web Scraper CLI
 
-1. Start the Redis server.
-2. To start the FastAPI server:
+The CLI-based web scraper provides a command-line interface for scraping websites.
+
+### Usage
+
+To use the web scraper CLI:
 
 ```bash
-poetry run uvicorn fastapi.main:app --reload
+./start.sh [OPTIONS] URL
 ```
+
+Options:
+- `--output-format`: Choose between 'text', 'markdown', or 'json' (default: 'text')
+- `--check-robots/--no-check-robots`: Enable/disable robots.txt checking (default: disabled)
+- `--async-mode/--sync-mode`: Use async or sync mode (default: sync)
+- `--concurrency`: Number of concurrent requests in async mode (default: 1)
+- `--output-dir`: Directory to save output files (default: current directory)
+- `--render-js/--no-render-js`: Enable/disable JavaScript rendering (default: enabled)
+- `--verbose`: Show detailed progress
+
+Example:
+```bash
+./start.sh --output-format json --async-mode --concurrency 5 https://example.com
+```
+
+## FastAPI Web Scraping API
+
+The FastAPI-based web scraping API provides HTTP endpoints for web scraping tasks.
+
+### Starting the API Server
+
+To start the FastAPI server:
+
+1. Navigate to the FastAPI directory:
+   ```
+   cd fastapi
+   ```
+
+2. Start the server:
+   ```
+   uvicorn main:app --reload
+   ```
 
 The API will be available at `http://localhost:8000`.
 
-Note: The API endpoints are rate-limited to prevent abuse. The current limits are:
-- Search: 10 requests per minute
-- PDF/HTML processing: 5 requests per minute
-- Proxy configuration: 2 requests per minute
-- Search history: 20 requests per minute
+### API Endpoints
 
-## API Endpoints
+- `POST /search`: Execute a search request
+- `POST /pdf-to-text`: Upload and process a PDF or HTML file
+- `POST /set-proxy`: Set or update the proxy server configuration
+- `GET /search-history`: Retrieve the history of search requests
 
-### POST /search
-
-Executes a search request based on the provided parameters.
-
-**Parameters:**
-- `api_key` (optional): String
-- `timeout` (optional): Integer (seconds)
-- `css_selector` (optional): String (CSS selector to target specific content)
-- `wait_for_selector` (optional): String (CSS selector to wait for)
-- `gather_links` (optional): Boolean (whether to gather all links)
-- `gather_images` (optional): Boolean (whether to gather all images)
-- `use_post_method` (optional): Boolean (to send data using POST)
-- `json_response` (optional): Boolean (return results in JSON format)
-- `forward_cookie` (optional): String (cookie to forward)
-- `use_proxy` (optional): String (proxy server address)
-- `bypass_cache` (optional): Boolean (disable cache)
-- `stream_mode` (optional): Boolean (stream large content)
-- `browser_locale` (optional): String (locale settings)
-
-**Response:** JSON containing the content of the fetched page.
-
-### POST /pdf-to-text
-
-Uploads a local PDF or HTML file for text processing.
-
-**Parameters:** File upload (PDF/HTML)
-
-**Response:** Extracted text or structured HTML content.
-
-### POST /set-proxy
-
-Set or update the proxy server configuration.
-
-**Parameters:**
-- `proxy_address`: String (the address of the proxy server)
-
-**Response:** Confirmation of proxy configuration.
-
-### GET /search-history
-
-Retrieves the history of search requests.
-
-**Response:** List of previous searches (stored locally or in a database).
+For detailed API documentation, visit `/docs` after starting the server.
 
 ## Development
 
@@ -98,16 +80,9 @@ To run tests:
 pytest tests/
 ```
 
-## Extending the Project
+## Contributing
 
-To add new features or modify existing ones, refer to the module structure:
-
-- `main.py`: FastAPI application and route definitions
-- `models.py`: Pydantic models for request/response schemas
-- `scraper.py`: Core scraping logic
-- `pdf_processor.py`: PDF and HTML processing
-- `proxy_manager.py`: Proxy configuration management
-- `history_manager.py`: Search history tracking
+Contributions to the Agentic Scraper project are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
