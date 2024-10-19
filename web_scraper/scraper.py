@@ -1,24 +1,35 @@
 import asyncio
+import logging
 from typing import List
 from playwright.async_api import async_playwright
 from .models import ScraperConfig, ScrapedContent
 from .utils import check_robots_txt
 from .parser import parse_html
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 async def scrape_website(config: ScraperConfig) -> ScrapedContent:
     url = config.urls[0]
+    logger.info(f"Starting to scrape {url}")
     if config.check_robots and not await check_robots_txt(url):
-        print(f"Scraping not allowed for {url}")
+        logger.warning(f"Scraping not allowed for {url}")
         return None
 
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
-        await page.goto(url)
-        html_content = await page.content()
-        await browser.close()
+        try:
+            await page.goto(url)
+            html_content = await page.content()
+        except Exception as e:
+            logger.error(f"Error scraping {url}: {str(e)}")
+            return None
+        finally:
+            await browser.close()
 
     title, content, links = parse_html(html_content, url)
+    logger.info(f"Successfully scraped {url}")
     return ScrapedContent(url=url, title=title, content=content, links=links)
 
 async def scrape_concurrent(config: ScraperConfig) -> List[ScrapedContent]:

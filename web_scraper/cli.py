@@ -1,11 +1,13 @@
 import click
 import asyncio
 import logging
+from tqdm import tqdm
 from .models import ScraperConfig
 from .scraper import scrape_website, scrape_concurrent
 from .output import save_output
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 @click.command()
 @click.option('--url', multiple=True, required=True, help='One or more URLs to scrape')
@@ -34,26 +36,28 @@ def main(url, output_format, check_robots, async_mode, concurrency, output_dir):
 
 async def run_async(config: ScraperConfig):
     try:
-        results = await scrape_concurrent(config)
-        for i, result in enumerate(results):
-            if result:
-                filename = f"{config.output_dir}/output_{i}"
-                await save_output(result, config.output_format, filename)
-                logging.info(f"Saved output for {result.url} to {filename}")
+        with tqdm(total=len(config.urls), desc="Scraping progress") as pbar:
+            results = await scrape_concurrent(config)
+            for i, result in enumerate(results):
+                if result:
+                    filename = f"{config.output_dir}/output_{i}"
+                    await save_output(result, config.output_format, filename)
+                    logger.info(f"Saved output for {result.url} to {filename}")
+                pbar.update(1)
     except Exception as e:
-        logging.error(f"Error in async scraping: {str(e)}")
+        logger.error(f"Error in async scraping: {str(e)}")
 
 async def run_sync(config: ScraperConfig):
-    for url in config.urls:
+    for url in tqdm(config.urls, desc="Scraping progress"):
         try:
             config_single = config.copy(update={'urls': [url]})
             result = await scrape_website(config_single)
             if result:
                 filename = f"{config.output_dir}/output_{url.replace('://', '_').replace('/', '_')}"
                 await save_output(result, config.output_format, filename)
-                logging.info(f"Saved output for {url} to {filename}")
+                logger.info(f"Saved output for {url} to {filename}")
         except Exception as e:
-            logging.error(f"Error scraping {url}: {str(e)}")
+            logger.error(f"Error scraping {url}: {str(e)}")
 
 if __name__ == '__main__':
     main()
