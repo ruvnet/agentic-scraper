@@ -7,3 +7,4 @@ PyPDF2==1.26.0
 fastapi-limiter==0.1.5
 redis==4.3.4
 aiofiles==23.1.0
+python-multipart 
