@@ -21,9 +21,9 @@ async def scrape_website(url: str, config: ScraperConfig) -> ScrapedContent:
         browser = await p.chromium.launch()
         page = await browser.new_page()
         try:
-            await page.goto(url)
+            await page.goto(url, timeout=30000)  # 30 seconds timeout
             if config.render_js:
-                await page.wait_for_load_state('networkidle')
+                await page.wait_for_load_state('networkidle', timeout=30000)
             html_content = await page.content()
             logger.info(f"Retrieved HTML content (length: {len(html_content)})")
         except Exception as e:
@@ -32,14 +32,18 @@ async def scrape_website(url: str, config: ScraperConfig) -> ScrapedContent:
         finally:
             await browser.close()
 
-    title, content, links = parse_html(html_content, url)
-    logger.info(f"Parsed content - Title: {title[:50]}..., Content length: {len(content)}, Links: {len(links)}")
-    
-    # Filter out invalid URLs
-    valid_links = [link for link in links if urlparse(link).scheme in ['http', 'https']]
-    
-    logger.info(f"Successfully scraped {url}")
-    return ScrapedContent(url=url, title=title, content=content, links=valid_links)
+    try:
+        title, content, links = parse_html(html_content, url)
+        logger.info(f"Parsed content - Title: {title[:50]}..., Content length: {len(content)}, Links: {len(links)}")
+        
+        # Filter out invalid URLs
+        valid_links = [link for link in links if urlparse(link).scheme in ['http', 'https']]
+        
+        logger.info(f"Successfully scraped {url}")
+        return ScrapedContent(url=url, title=title, content=content, links=valid_links)
+    except Exception as e:
+        logger.error(f"Error parsing content from {url}: {str(e)}")
+        return None
 
 async def scrape_concurrent(config: ScraperConfig) -> List[ScrapedContent]:
     semaphore = asyncio.Semaphore(config.concurrency)
