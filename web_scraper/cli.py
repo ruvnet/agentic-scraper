@@ -36,12 +36,15 @@ def main(url, output_format, check_robots, async_mode, concurrency, output_dir, 
         logging.getLogger().setLevel(logging.ERROR)
     
     if not quiet:
-        click.echo(f"Starting scraper with config: {config}")
+        print(f"Starting scraper for {len(config.urls)} URL(s)")
 
     if async_mode:
         asyncio.run(run_async(config, show_progress))
     else:
         asyncio.run(run_sync(config, show_progress))
+
+    if not quiet:
+        print("Scraping completed")
 
 async def run_async(config: ScraperConfig, show_progress: bool):
     try:
