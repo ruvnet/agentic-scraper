@@ -2,7 +2,7 @@ import click
 import asyncio
 import logging
 from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, TextColumn
+from rich.live import Live
 from rich.panel import Panel
 from rich.text import Text
 from web_scraper.models import ScraperConfig
@@ -34,29 +34,23 @@ def main(url, output_format, check_robots, async_mode, concurrency, output_dir, 
 
     console.print(Panel(Text("Web Scraper CLI", style="bold magenta"), expand=False))
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        transient=True,
-    ) as progress:
-        task = progress.add_task("Initializing...", total=None)
-        
+    with Live(Panel(Text("Initializing...", style="yellow")), refresh_per_second=4) as live:
         if async_mode:
-            progress.update(task, description="Running in async mode...")
-            asyncio.run(run_async(config, progress, verbose))
+            live.update(Panel(Text("Running in async mode...", style="cyan")))
+            asyncio.run(run_async(config, live, verbose))
         else:
-            progress.update(task, description="Running in sync mode...")
-            asyncio.run(run_sync(config, progress, verbose))
+            live.update(Panel(Text("Running in sync mode...", style="cyan")))
+            asyncio.run(run_sync(config, live, verbose))
 
     console.print(Panel(Text("Scraping completed", style="bold green"), expand=False))
 
-async def run_async(config: ScraperConfig, progress, verbose):
+async def run_async(config: ScraperConfig, live, verbose):
     try:
-        progress.update(progress.tasks[0], description="Preparing to scrape concurrently...")
+        live.update(Panel(Text("Preparing to scrape concurrently...", style="yellow")))
         results = await scrape_concurrent(config)
         for i, result in enumerate(results):
             if result:
-                progress.update(progress.tasks[0], description=f"Saving output for URL {i+1}/{len(results)}...")
+                live.update(Panel(Text(f"Saving output for URL {i+1}/{len(results)}...", style="green")))
                 filename = f"{config.output_dir}/output_{i}"
                 await save_output(result, config.output_format, filename)
                 if verbose:
@@ -64,13 +58,13 @@ async def run_async(config: ScraperConfig, progress, verbose):
     except Exception as e:
         console.print(f"[bold red]Error in async scraping:[/bold red] {str(e)}")
 
-async def run_sync(config: ScraperConfig, progress, verbose):
+async def run_sync(config: ScraperConfig, live, verbose):
     for i, url in enumerate(config.urls):
         try:
-            progress.update(progress.tasks[0], description=f"Scraping URL {i+1}/{len(config.urls)}: {url}")
+            live.update(Panel(Text(f"Scraping URL {i+1}/{len(config.urls)}: {url}", style="yellow")))
             result = await scrape_website(url, config)
             if result:
-                progress.update(progress.tasks[0], description=f"Saving output for URL {i+1}/{len(config.urls)}...")
+                live.update(Panel(Text(f"Saving output for URL {i+1}/{len(config.urls)}...", style="green")))
                 filename = f"{config.output_dir}/output_{url.replace('://', '_').replace('/', '_')}"
                 await save_output(result, config.output_format, filename)
                 if verbose:
