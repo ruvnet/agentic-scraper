@@ -14,9 +14,7 @@ def parse_html(html: str, base_url: str) -> Tuple[str, str, List[str]]:
     
     title = soup.title.string if soup.title else "No title found"
     
-    main_content = ""
-    for p in soup.find_all('p'):
-        main_content += p.get_text() + "\n"
+    main_content = soup.get_text(separator='\n', strip=True)
     
     links = [link.get('href') for link in soup.find_all('a') if link.get('href')]
     
