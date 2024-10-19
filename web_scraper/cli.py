@@ -6,7 +6,8 @@ from .models import ScraperConfig
 from .scraper import scrape_website, scrape_concurrent
 from .output import save_output
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Change the default logging level to WARNING
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 @click.command()
@@ -17,7 +18,9 @@ logger = logging.getLogger(__name__)
 @click.option('--concurrency', default=1, help='Number of concurrent requests (only in async mode)')
 @click.option('--output-dir', default='.', help='Directory to save output files')
 @click.option('--render-js/--no-render-js', default=True, help='Render JavaScript before scraping')
-def main(url, output_format, check_robots, async_mode, concurrency, output_dir, render_js):
+@click.option('--quiet', is_flag=True, help='Suppress most output')
+@click.option('--show-progress', is_flag=True, help='Show progress bar')
+def main(url, output_format, check_robots, async_mode, concurrency, output_dir, render_js, quiet, show_progress):
     """Web scraper using Beautiful Soup and Playwright"""
     config = ScraperConfig(
         urls=list(url),
@@ -29,34 +32,38 @@ def main(url, output_format, check_robots, async_mode, concurrency, output_dir, 
         render_js=render_js
     )
 
-    logging.info(f"Starting scraper with config: {config}")
+    if quiet:
+        logging.getLogger().setLevel(logging.ERROR)
+    
+    if not quiet:
+        click.echo(f"Starting scraper with config: {config}")
 
     if async_mode:
-        asyncio.run(run_async(config))
+        asyncio.run(run_async(config, show_progress))
     else:
-        asyncio.run(run_sync(config))
+        asyncio.run(run_sync(config, show_progress))
 
-async def run_async(config: ScraperConfig):
+async def run_async(config: ScraperConfig, show_progress: bool):
     try:
-        with tqdm(total=len(config.urls), desc="Scraping progress") as pbar:
-            results = await scrape_concurrent(config)
-            for i, result in enumerate(results):
-                if result:
-                    filename = f"{config.output_dir}/output_{i}"
-                    await save_output(result, config.output_format, filename)
+        results = await scrape_concurrent(config)
+        for i, result in enumerate(results):
+            if result:
+                filename = f"{config.output_dir}/output_{i}"
+                await save_output(result, config.output_format, filename)
+                if not show_progress:
                     logger.info(f"Saved output for {result.url} to {filename}")
-                pbar.update(1)
     except Exception as e:
         logger.error(f"Error in async scraping: {str(e)}")
 
-async def run_sync(config: ScraperConfig):
-    for url in tqdm(config.urls, desc="Scraping progress"):
+async def run_sync(config: ScraperConfig, show_progress: bool):
+    for url in (tqdm(config.urls, desc="Scraping progress") if show_progress else config.urls):
         try:
             result = await scrape_website(url, config)
             if result:
                 filename = f"{config.output_dir}/output_{url.replace('://', '_').replace('/', '_')}"
                 await save_output(result, config.output_format, filename)
-                logger.info(f"Saved output for {url} to {filename}")
+                if not show_progress:
+                    logger.info(f"Saved output for {url} to {filename}")
         except Exception as e:
             logger.error(f"Error scraping {url}: {str(e)}")
 
