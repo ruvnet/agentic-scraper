@@ -11,10 +11,9 @@ from urllib.parse import urlparse
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-async def scrape_website(config: ScraperConfig) -> ScrapedContent:
-    url = AnyHttpUrl(config.urls[0])
+async def scrape_website(url: str, config: ScraperConfig) -> ScrapedContent:
     logger.info(f"Starting to scrape {url}")
-    if config.check_robots and not await check_robots_txt(str(url)):
+    if config.check_robots and not await check_robots_txt(url):
         logger.warning(f"Scraping not allowed for {url}")
         return None
 
@@ -22,7 +21,7 @@ async def scrape_website(config: ScraperConfig) -> ScrapedContent:
         browser = await p.chromium.launch()
         page = await browser.new_page()
         try:
-            await page.goto(str(url))
+            await page.goto(url)
             if config.render_js:
                 await page.wait_for_load_state('networkidle')
             html_content = await page.content()
@@ -33,20 +32,20 @@ async def scrape_website(config: ScraperConfig) -> ScrapedContent:
         finally:
             await browser.close()
 
-    title, content, links = parse_html(html_content, str(url))
+    title, content, links = parse_html(html_content, url)
     logger.info(f"Parsed content - Title: {title[:50]}..., Content length: {len(content)}, Links: {len(links)}")
     
     # Filter out invalid URLs
     valid_links = [link for link in links if urlparse(link).scheme in ['http', 'https']]
     
     logger.info(f"Successfully scraped {url}")
-    return ScrapedContent(url=str(url), title=title, content=content, links=valid_links)
+    return ScrapedContent(url=url, title=title, content=content, links=valid_links)
 
 async def scrape_concurrent(config: ScraperConfig) -> List[ScrapedContent]:
     semaphore = asyncio.Semaphore(config.concurrency)
     async def scrape_with_semaphore(url):
         async with semaphore:
-            return await scrape_website(ScraperConfig(urls=[url], **config.dict()))
+            return await scrape_website(url, config)
     
     tasks = [scrape_with_semaphore(url) for url in config.urls]
     return await asyncio.gather(*tasks)

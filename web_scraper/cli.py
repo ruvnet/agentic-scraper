@@ -52,8 +52,7 @@ async def run_async(config: ScraperConfig):
 async def run_sync(config: ScraperConfig):
     for url in tqdm(config.urls, desc="Scraping progress"):
         try:
-            config_single = config.copy(update={'urls': [url]})
-            result = await scrape_website(config_single)
+            result = await scrape_website(url, config)
             if result:
                 filename = f"{config.output_dir}/output_{url.replace('://', '_').replace('/', '_')}"
                 await save_output(result, config.output_format, filename)
