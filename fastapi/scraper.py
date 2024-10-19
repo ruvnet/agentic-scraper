@@ -1,7 +1,7 @@
 import aiohttp
 from bs4 import BeautifulSoup
-from .models import SearchRequest
-from .proxy_manager import get_proxy
+from models import SearchRequest
+from proxy_manager import get_proxy
 
 async def scrape_website(request: SearchRequest):
     proxy = get_proxy() if request.use_proxy else None
