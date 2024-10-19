@@ -1,6 +1,9 @@
 import json
 import aiofiles
+import logging
 from .models import ScrapedContent
+
+logger = logging.getLogger(__name__)
 
 async def save_output(content: ScrapedContent, output_format: str, filename: str):
     if output_format == 'text':
