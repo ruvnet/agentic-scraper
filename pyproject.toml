@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "web-scraper"
+version = "0.1.0"
+description = "A web scraper using Beautiful Soup and Playwright"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+beautifulsoup4 = "^4.10.0"
+playwright = "^1.30.0"
+click = "^8.1.3"
+pydantic = "^1.10.2"
+aiofiles = "^0.8.0"
+aiohttp = "^3.8.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+pytest-asyncio = "^0.20.3"
+
+[tool.poetry.scripts]
+web-scraper = "web_scraper.cli:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
