@@ -8,8 +8,11 @@ export PATH="$HOME/.local/bin:$PATH"
 # Print current directory
 echo "Current directory: $(pwd)"
 
-# Print Python path
-echo "PYTHONPATH: $PYTHONPATH"
+# Add the project root to PYTHONPATH
+export PYTHONPATH="$PYTHONPATH:$(pwd)"
+
+# Print updated Python path
+echo "Updated PYTHONPATH: $PYTHONPATH"
 
 # Print Poetry environment info
 poetry env info
