@@ -7,12 +7,12 @@ import redis.asyncio as redis
 from fastapi_limiter import FastAPILimiter
 from fastapi_limiter.depends import RateLimiter
 
-from .models import SearchRequest, ProxyConfig
-from .scraper import scrape_website
-from .pdf_processor import process_pdf, process_html
-from .proxy_manager import set_proxy, get_proxy
-from .history_manager import add_to_history, get_search_history
-from .config import settings
+from app.models import SearchRequest, ProxyConfig
+from app.scraper import scrape_website
+from app.pdf_processor import process_pdf, process_html
+from app.proxy_manager import set_proxy, get_proxy
+from app.history_manager import add_to_history, get_search_history
+from app.config import settings
 
 app = FastAPI()
 

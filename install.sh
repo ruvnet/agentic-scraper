@@ -14,12 +14,21 @@ fi
 # Ensure Poetry is in PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Install project dependencies
-echo "Installing project dependencies..."
+# Install FastAPI project dependencies
+echo "Installing FastAPI project dependencies..."
+cd fastapi
+poetry install
+cd ..
+
+# Install Web Scraper CLI project dependencies
+echo "Installing Web Scraper CLI project dependencies..."
+cd web_scraper
 poetry install
 
 # Install Playwright browsers
 echo "Installing Playwright browsers..."
 poetry run playwright install
+
+cd ..
 
 echo "Installation complete!"
