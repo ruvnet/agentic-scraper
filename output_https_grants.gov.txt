@@ -1,0 +1,317 @@
+URL: https://grants.gov
+Title: Home | Grants.gov
+
+Content:
+Home | Grants.gov
+An official website of the United States government
+Here's how you know
+Here's how you know
+Official websites use .gov
+A
+.gov
+website belongs to an official government organization in the United States.
+Secure .gov websites use HTTPS
+A
+lock
+(
+Lock
+Locked padlock icon
+) or
+https://
+means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.
+Menu
+Home
+Learn Grants
+Grants Learning Center
+Grants 101
+Grant Policies
+Grant Eligibility
+Grant Terminology
+Grant-Making Agencies
+Grant Systems
+Grant Programs
+Grant Careers
+Grant Reporting
+Grant Fraud
+Search Grants
+Applicants
+Grant Applications
+How to Apply for Grants
+Track My Application
+Applicant Resources
+Workspace Overview
+Applicant Eligibility
+Applicant Registration
+Applicant Training
+Applicant FAQs
+Adobe Software Compatibility
+Submitting UTF-8 Special Characters
+Encountering Error Messages
+Grantors
+Grantor Resources
+Grantor Registration
+Grantor Tools & Tips
+Grantor FAQs
+Grantor Standard Language
+Submitting UTF-8 Special Characters
+Grantor Help
+System-To-System
+System-To-System
+Applicant System-To-System
+Versions & WSDLs
+Web Services
+Schemas
+Hashing
+Certificates
+Testing
+Reference Implementation
+Listserv
+Troubleshooting
+Grantor System-To-System
+Versions & WSDLs
+Web Services
+Schemas
+Certificates
+Testing
+Reference Implementation
+Listserv
+Troubleshooting
+RESTful APIs
+Forms
+Grant Forms
+Forms Repository
+R&R Family
+SF-424 Family
+SF-424 Individual Family
+SF-424 Mandatory Family
+SF-424 Short Organization Family
+Post-Award Reporting Forms
+Retired Forms
+Forms Development
+Forms Status Report
+Forms Process
+Forms Request
+Country and State Lists Updates
+Planned UEI Updates
+Connect
+Connect
+Manage Subscriptions
+Newsletter Archive
+Social Media
+Support
+Support Resources
+About Grants.gov
+Program Management Office
+Grants.gov Notices
+Grants.gov Maintenance Calendar
+Grants.gov Releases
+Search Site Content
+Help
+Register
+Login
+Search
+Your Team. Your Workspace.
+Applying for a funding opportunity is easier and more efficient when your team collaborates. Grants.gov Workspace makes it possible.
+Apply for a Grant Using Workspace
+Informative status
+Reminder:
+Federal agencies do not publish personal financial assistance opportunities on Grants.gov. Federal funding opportunities published on Grants.gov are for organizations and entities supporting the development and management of government-funded programs and projects. For more information about personal financial assistance benefits, please visit USA.gov.
+Search Grants
+Get Started
+Grant Policies
+Grant-Making Agencies
+Prevent Scams
+Community Blog
+Twitter Feed
+YouTube Videos
+User Guide
+Support Center
+How to Apply for Federal Funding Opportunities
+Key steps that will help you in the application process
+Learn more
+Are You Eligible for Federal Funding Opportunities?
+Determining your eligibility for federal grants is an important first step in the application process.
+Learn more
+Ways to Get Help When Using Grants.gov
+Grants.gov offers a wide range of help-focused resources
+Learn more
+Grant Writing Tips
+Principles and examples of grant-writing
+Learn more
+Learning Workspace - Application Workflow for Organizations
+Learning Workspace - Application Workflow for Organizations
+"How To..." Blog Series
+How to manage passwords, find grantor contact information, find an applicant's UEI, and more
+Learn more
+Intro to Grants.gov - Applying for a Federal Grant on Grants.gov
+Intro to Grants.gov - Applying for a Federal Grant on Grants.gov
+Grants Learning Center
+The Grants Learning Center is your gateway to the federal grants world
+Learn more
+Next System Maintenance: October 19-21, 2024
+Software releases bring users new features and fixes
+Learn more
+Return to top
+Connect with Us
+Blog
+Twitter
+YouTube
+Alerts
+RSS
+XML Extract
+Get Adobe Reader
+Health & Human Services
+HHS.gov
+EEOC / No Fear Act
+Accessibility
+Privacy
+Vulnerability Disclosure Policy
+Disclaimers
+Site Map
+Community
+USA.gov
+WhiteHouse.gov
+USAspending.gov
+SBA.gov
+SAM.gov
+Report Fraud
+Additional Help
+Chat now with Grant
+Frequently Asked Questions
+Open default modal
+Your session will expire in 3 minutes.
+To continue working, click on the "OK" button below.
+Note:
+This is being done to protect your privacy. Unsaved changes will be lost.
+Ok
+
+Links:
+- https://grants.gov/
+- https://grants.gov/
+- https://grants.gov/learn-grants
+- https://grants.gov/learn-grants/grants-101/
+- https://grants.gov/learn-grants/grant-policies/
+- https://grants.gov/learn-grants/grant-eligibility
+- https://grants.gov/learn-grants/grant-terminology
+- https://grants.gov/learn-grants/grant-making-agencies/
+- https://grants.gov/learn-grants/grant-systems
+- https://grants.gov/learn-grants/grant-programs
+- https://grants.gov/learn-grants/grant-careers
+- https://grants.gov/learn-grants/grant-reporting
+- https://grants.gov/learn-grants/grant-fraud
+- https://grants.gov/search-grants
+- https://grants.gov/applicants
+- https://grants.gov/applicants/grant-applications/how-to-apply-for-grants
+- https://grants.gov/applicants/grant-applications/track-my-application
+- https://grants.gov/
+- https://grants.gov/applicants/workspace-overview
+- https://grants.gov/applicants/applicant-eligibility
+- https://grants.gov/applicants/applicant-registration
+- https://grants.gov/applicants/applicant-training
+- https://grants.gov/applicants/applicant-faqs
+- https://grants.gov/applicants/adobe-software-compatibility
+- https://grants.gov/applicants/submitting-utf-8-special-characters
+- https://grants.gov/applicants/encountering-error-messages
+- https://grants.gov/grantors
+- https://grants.gov/grantors/grantor-registration
+- https://grants.gov/grantors/grantor-tools-tips
+- https://grants.gov/grantors/grantor-faqs
+- https://grants.gov/grantors/grantor-standard-language
+- https://grants.gov/grantors/submitting-utf-8-special-characters
+- https://grants.gov/grantors/grantor-help
+- https://grants.gov/system-to-system
+- https://grants.gov/system-to-system/applicant-system-to-system/
+- https://grants.gov/system-to-system/applicant-system-to-system/versions-wsdls
+- https://grants.gov/system-to-system/applicant-system-to-system/web-services
+- https://grants.gov/system-to-system/applicant-system-to-system/schemas
+- https://grants.gov/system-to-system/applicant-system-to-system/hashing
+- https://grants.gov/system-to-system/applicant-system-to-system/certificates
+- https://grants.gov/system-to-system/applicant-system-to-system/testing
+- https://grants.gov/system-to-system/applicant-system-to-system/reference-implementation
+- https://grants.gov/system-to-system/applicant-system-to-system/listserv
+- https://grants.gov/system-to-system/applicant-system-to-system/troubleshooting
+- https://grants.gov/system-to-system/grantor-system-to-system/
+- https://grants.gov/system-to-system/grantor-system-to-system/versions-wsdls
+- https://grants.gov/system-to-system/grantor-system-to-system/web-services
+- https://grants.gov/system-to-system/grantor-system-to-system/schemas
+- https://grants.gov/system-to-system/grantor-system-to-system/certificates
+- https://grants.gov/system-to-system/grantor-system-to-system/testing
+- https://grants.gov/system-to-system/grantor-system-to-system/reference-implementation
+- https://grants.gov/system-to-system/grantor-system-to-system/listserv
+- https://grants.gov/system-to-system/grantor-system-to-system/troubleshooting
+- https://grants.gov/system-to-system/grantor-system-to-system/restful-apis
+- https://grants.gov/forms
+- https://grants.gov/forms/forms-repository/
+- https://grants.gov/forms/forms-repository/r-r-family
+- https://grants.gov/forms/forms-repository/sf-424-family
+- https://grants.gov/forms/forms-repository/sf-424-individual-family
+- https://grants.gov/forms/forms-repository/sf-424-mandatory-family
+- https://grants.gov/forms/forms-repository/sf-424-short-organization-family
+- https://grants.gov/forms/forms-repository/post-award-reporting-forms
+- https://grants.gov/forms/forms-repository/retired-forms
+- https://grants.gov/forms/forms-development/
+- https://grants.gov/forms/forms-development/forms-status-report
+- https://grants.gov/forms/forms-development/forms-process/
+- https://grants.gov/forms/forms-development/forms-request
+- https://grants.gov/forms/forms-development/country-and-state-lists-updates
+- https://grants.gov/forms/forms-development/planned-uei-updates
+- https://grants.gov/connect
+- https://grants.gov/connect/manage-subscriptions/
+- https://grants.gov/connect/manage-subscriptions/newsletter-archive
+- https://grants.gov/connect/social-media
+- https://grants.gov/support
+- https://grants.gov/support/about-grants-gov
+- https://grants.gov/support/program-management-office
+- https://grants.gov/support/grants-gov-notices
+- https://grants.gov/support/grants-gov-maintenance-calendar
+- https://grants.gov/support/grants-gov-releases
+- https://grants.gov/site-search-results
+- https://apply07.grants.gov/help/html/help/index.htm#t=GetStarted%2FGetStarted.htm
+- https://grants.gov/register
+- https://grants.gov
+- https://grants.gov/applicants/workspace-overview/
+- https://grants.gov/search-grants
+- https://grants.gov/applicants/grant-applications/how-to-apply-for-grants
+- https://grants.gov/learn-grants/grant-policies/
+- https://grants.gov/learn-grants/grant-making-agencies/
+- https://grants.gov/learn-grants/grant-fraud/
+- https://grantsgovprod.wordpress.com/
+- https://twitter.com/i/flow/login?redirect_after_login=%2Fgrantsdotgov
+- https://www.youtube.com/user/GrantsGovUS
+- https://apply07.grants.gov/help/html/help/index.htm?callingApp=custom#callingApp=custom&t=GetStarted%2FGetStarted.htm
+- https://grants.gov/support/
+- https://grantsgovprod.wordpress.com/2021/04/28/how-to-apply-for-a-federal-funding-opportunity-on-grants-gov/
+- https://grantsgovprod.wordpress.com/2021/03/17/how-to-determine-eligibility-for-federal-funding-opportunities/
+- https://grantsgovprod.wordpress.com/2021/07/07/how-to-get-help-when-using-the-grants-gov-system/
+- https://grantsgovprod.wordpress.com/category/learngrants/grant-writing-basics/
+- https://grantsgovprod.wordpress.com/category/learngrants/how-to-blog-series/
+- https://grants.gov/learn-grants/
+- https://grants.gov/support/grants-gov-maintenance-calendar
+- https://grants.gov
+- http://blog.grants.gov/
+- https://twitter.com/grantsdotgov
+- https://www.youtube.com/user/GrantsGovUS
+- http://grants-gov.blogspot.com/
+- https://grants.gov/connect/rss-feeds
+- https://grants.gov/xml-extract
+- http://get.adobe.com/reader/otherversions/
+- http://www.hhs.gov/
+- https://www.eeoc.gov/
+- https://grants.gov/accessibility-compliance
+- https://grants.gov/privacy-policy
+- https://www.hhs.gov/vulnerability-disclosure-policy/index.html
+- https://grants.gov/exit-disclaimer
+- https://grants.gov/site-map
+- http://www.usa.gov/
+- http://www.whitehouse.gov/
+- http://www.usaspending.gov/
+- http://www.sba.gov/
+- https://www.sam.gov/
+- http://www.ignet.gov/node/207
+- https://grants.gov
+- https://grants-portal.psc.gov/
+- https://grants.gov/
+- https://twitter.com/grantsdotgov
+- https://www.youtube.com/user/GrantsGovUS
+- https://grants.gov/connect/rss-feeds
+- https://grants.gov#gg-timeout-modal
