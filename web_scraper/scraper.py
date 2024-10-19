@@ -23,6 +23,7 @@ async def scrape_website(config: ScraperConfig) -> ScrapedContent:
         try:
             await page.goto(url)
             html_content = await page.content()
+            logger.info(f"Retrieved HTML content (length: {len(html_content)})")
         except Exception as e:
             logger.error(f"Error scraping {url}: {str(e)}")
             return None
@@ -30,6 +31,7 @@ async def scrape_website(config: ScraperConfig) -> ScrapedContent:
             await browser.close()
 
     title, content, links = parse_html(html_content, url)
+    logger.info(f"Parsed content - Title: {title[:50]}..., Content length: {len(content)}, Links: {len(links)}")
     
     # Filter out invalid URLs
     valid_links = [link for link in links if urlparse(link).scheme in ['http', 'https']]

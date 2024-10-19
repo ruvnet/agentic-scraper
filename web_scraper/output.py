@@ -20,6 +20,7 @@ async def save_text(content: ScrapedContent, filename: str):
         await f.write("Links:\n")
         for link in content.links:
             await f.write(f"- {link}\n")
+    logger.info(f"Saved text output to {filename}.txt (Content length: {len(content.content)})")
 
 async def save_markdown(content: ScrapedContent, filename: str):
     async with aiofiles.open(f"{filename}.md", mode='w') as f:
