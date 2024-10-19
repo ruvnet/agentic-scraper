@@ -27,7 +27,7 @@ poetry install
 
 # Install Playwright browsers
 echo "Installing Playwright browsers..."
-poetry run playwright install
+poetry run playwright install chromium
 
 cd ..
 
