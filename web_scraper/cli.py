@@ -16,7 +16,8 @@ logger = logging.getLogger(__name__)
 @click.option('--async-mode/--sync-mode', default=False, help='Use async mode')
 @click.option('--concurrency', default=1, help='Number of concurrent requests (only in async mode)')
 @click.option('--output-dir', default='.', help='Directory to save output files')
-def main(url, output_format, check_robots, async_mode, concurrency, output_dir):
+@click.option('--render-js/--no-render-js', default=True, help='Render JavaScript before scraping')
+def main(url, output_format, check_robots, async_mode, concurrency, output_dir, render_js):
     """Web scraper using Beautiful Soup and Playwright"""
     config = ScraperConfig(
         urls=list(url),
@@ -24,7 +25,8 @@ def main(url, output_format, check_robots, async_mode, concurrency, output_dir):
         check_robots=check_robots,
         async_mode=async_mode,
         concurrency=concurrency,
-        output_dir=output_dir
+        output_dir=output_dir,
+        render_js=render_js
     )
 
     logging.info(f"Starting scraper with config: {config}")
