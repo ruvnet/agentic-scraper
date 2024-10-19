@@ -19,4 +19,5 @@ poetry env info
 
 # Run the web_scraper CLI with verbose Python
 cd web_scraper
+echo "Running web_scraper CLI..."
 poetry run python -v -m web_scraper.cli "$@"
