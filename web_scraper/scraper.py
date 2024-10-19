@@ -1,4 +1,5 @@
 import asyncio
+from typing import List
 from playwright.async_api import async_playwright
 from .models import ScraperConfig, ScrapedContent
 from .utils import check_robots_txt
