@@ -8,6 +8,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # Add the project root to PYTHONPATH
 export PYTHONPATH="$PYTHONPATH:$(pwd)"
 
-# Run the web_scraper CLI with quiet mode
+# Run the web_scraper CLI
 cd web_scraper
-poetry run python cli.py --quiet "$@"
+poetry run python cli.py "$@"
