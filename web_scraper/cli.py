@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 @click.command()
-@click.option('--url', multiple=True, required=True, help='One or more URLs to scrape')
+@click.argument('url', nargs=-1, required=True)
 @click.option('--output-format', type=click.Choice(['text', 'markdown', 'json']), default='text', help='Output format')
 @click.option('--check-robots/--no-check-robots', default=False, help='Check robots.txt before scraping')
 @click.option('--async-mode/--sync-mode', default=False, help='Use async mode')
