@@ -9,8 +9,14 @@ from .scraper import scrape_website
 from .pdf_processor import process_pdf, process_html
 from .proxy_manager import set_proxy, get_proxy
 from .history_manager import add_to_history, get_search_history
+from .config import settings
 
 app = FastAPI()
+
+@app.on_event("startup")
+async def startup_event():
+    if settings.PROXY_ENABLED:
+        set_proxy(settings.DEFAULT_PROXY)
 
 @app.post("/search")
 async def search(request: SearchRequest):
