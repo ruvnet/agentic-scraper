@@ -15,26 +15,34 @@ This FastAPI-based web scraper is an advanced, asynchronous web scraping solutio
 
 ## Installation
 
-1. Ensure you have Python 3.7+ installed.
-2. Clone the repository:
+1. Ensure you have Python 3.9+ installed.
+2. Install Redis server (used for rate limiting).
+3. Clone the repository:
    ```
    git clone https://github.com/yourusername/fastapi-web-scraper.git
    cd fastapi-web-scraper
    ```
-3. Install dependencies:
+4. Install dependencies:
    ```
-   pip install -r requirements.txt
+   poetry install
    ```
 
 ## Usage
 
-To start the FastAPI server:
+1. Start the Redis server.
+2. To start the FastAPI server:
 
 ```bash
-uvicorn main:app --reload
+poetry run uvicorn fastapi.main:app --reload
 ```
 
 The API will be available at `http://localhost:8000`.
+
+Note: The API endpoints are rate-limited to prevent abuse. The current limits are:
+- Search: 10 requests per minute
+- PDF/HTML processing: 5 requests per minute
+- Proxy configuration: 2 requests per minute
+- Search history: 20 requests per minute
 
 ## API Endpoints
 
