@@ -1,4 +1,3 @@
-from .cli import main
 from .models import ScraperConfig, ScrapedContent
 from .scraper import scrape_website, scrape_concurrent
 from .parser import parse_html
@@ -6,7 +5,6 @@ from .output import save_output
 from .utils import check_robots_txt
 
 __all__ = [
-    'main',
     'ScraperConfig',
     'ScrapedContent',
     'scrape_website',

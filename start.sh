@@ -10,4 +10,4 @@ export PYTHONPATH="$PYTHONPATH:$(pwd)"
 
 # Run the web_scraper CLI with quiet mode
 cd web_scraper
-poetry run python -m web_scraper.cli --quiet "$@"
+poetry run python cli.py --quiet "$@"

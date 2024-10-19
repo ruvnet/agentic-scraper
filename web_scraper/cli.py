@@ -2,9 +2,9 @@ import click
 import asyncio
 import logging
 from tqdm import tqdm
-from .models import ScraperConfig
-from .scraper import scrape_website, scrape_concurrent
-from .output import save_output
+from web_scraper.models import ScraperConfig
+from web_scraper.scraper import scrape_website, scrape_concurrent
+from web_scraper.output import save_output
 
 # Change the default logging level to WARNING
 logging.basicConfig(level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
