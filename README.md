@@ -1,75 +1,105 @@
-# Web Scraper Project
+# FastAPI Web Scraper
 
 ## Introduction
 
-This web scraper project is implemented using Python, Beautiful Soup, and Playwright. It's designed to fetch, parse, and output content from web pages, supporting features like asynchronous scraping, concurrency, robots.txt compliance, and multiple output formats.
+This FastAPI-based web scraper is an advanced, asynchronous web scraping solution that leverages the power of FastAPI, Pydantic, and asynchronous programming. It provides a robust API for web scraping tasks, PDF/HTML processing, proxy configuration, and search history retrieval.
+
+## Features
+
+- Asynchronous web scraping with customizable parameters
+- PDF and HTML file processing
+- Proxy server configuration
+- Search history tracking
+- Pydantic models for request and response validation
+- FastAPI for high-performance API endpoints
 
 ## Installation
 
-1. Ensure you have Python 3.9 or higher installed.
-2. Install Poetry:
+1. Ensure you have Python 3.7+ installed.
+2. Clone the repository:
    ```
-   pip install poetry
+   git clone https://github.com/yourusername/fastapi-web-scraper.git
+   cd fastapi-web-scraper
    ```
-3. Clone the repository:
+3. Install dependencies:
    ```
-   git clone https://github.com/yourusername/web_scraper.git
-   cd web_scraper
-   ```
-4. Install dependencies:
-   ```
-   poetry install
-   ```
-5. Install Playwright browsers:
-   ```
-   poetry run playwright install
+   pip install -r requirements.txt
    ```
 
 ## Usage
 
-Run the scraper using the provided `start.sh` script:
+To start the FastAPI server:
 
 ```bash
-./start.sh [OPTIONS] URL
+uvicorn main:app --reload
 ```
 
-### Options
+The API will be available at `http://localhost:8000`.
 
-- `--url`: One or more URLs to scrape (required)
-- `--output-format`: Output format (text, markdown, json). Default is text.
-- `--check-robots/--no-check-robots`: Enable/disable checking robots.txt before scraping. Default is disabled.
-- `--async-mode/--sync-mode`: Run in asynchronous or synchronous mode. Default is sync mode.
-- `--concurrency`: Number of concurrent requests in async mode. Default is 1.
-- `--output-dir`: Directory to save output files. Default is current directory.
+## API Endpoints
 
-### Example
+### POST /search
 
-```bash
-./start.sh https://example.com --output-format markdown --async-mode --concurrency 3
-```
+Executes a search request based on the provided parameters.
 
-## Troubleshooting
+**Parameters:**
+- `api_key` (optional): String
+- `timeout` (optional): Integer (seconds)
+- `css_selector` (optional): String (CSS selector to target specific content)
+- `wait_for_selector` (optional): String (CSS selector to wait for)
+- `gather_links` (optional): Boolean (whether to gather all links)
+- `gather_images` (optional): Boolean (whether to gather all images)
+- `use_post_method` (optional): Boolean (to send data using POST)
+- `json_response` (optional): Boolean (return results in JSON format)
+- `forward_cookie` (optional): String (cookie to forward)
+- `use_proxy` (optional): String (proxy server address)
+- `bypass_cache` (optional): Boolean (disable cache)
+- `stream_mode` (optional): Boolean (stream large content)
+- `browser_locale` (optional): String (locale settings)
 
-If you encounter a "URL host invalid" error, ensure that the URL you're trying to scrape is properly formatted and includes the protocol (http:// or https://). The `start.sh` script should automatically add `https://` if not provided, but double-check your input.
+**Response:** JSON containing the content of the fetched page.
+
+### POST /pdf-to-text
+
+Uploads a local PDF or HTML file for text processing.
+
+**Parameters:** File upload (PDF/HTML)
+
+**Response:** Extracted text or structured HTML content.
+
+### POST /set-proxy
+
+Set or update the proxy server configuration.
+
+**Parameters:**
+- `proxy_address`: String (the address of the proxy server)
+
+**Response:** Confirmation of proxy configuration.
+
+### GET /search-history
+
+Retrieves the history of search requests.
+
+**Response:** List of previous searches (stored locally or in a database).
 
 ## Development
 
 To run tests:
 
 ```bash
-poetry run pytest tests/
+pytest tests/
 ```
 
 ## Extending the Project
 
 To add new features or modify existing ones, refer to the module structure:
 
-- `cli.py`: Command-line interface
+- `main.py`: FastAPI application and route definitions
+- `models.py`: Pydantic models for request/response schemas
 - `scraper.py`: Core scraping logic
-- `parser.py`: HTML parsing
-- `output.py`: Output formatting and saving
-- `models.py`: Data models
-- `utils.py`: Utility functions
+- `pdf_processor.py`: PDF and HTML processing
+- `proxy_manager.py`: Proxy configuration management
+- `history_manager.py`: Search history tracking
 
 ## License
 

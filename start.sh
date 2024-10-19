@@ -5,5 +5,5 @@
 # Ensure Poetry is in PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Run the web scraper with all provided arguments
-poetry run web-scraper "$@"
+# Run the FastAPI web scraper
+poetry run uvicorn fastapi.main:app --reload
