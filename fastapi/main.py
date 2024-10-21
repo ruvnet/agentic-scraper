@@ -29,7 +29,6 @@ async def search(request: SearchRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/pdf-to-text")
-@app.get("/pdf-to-text")
 async def pdf_to_text(file: UploadFile = File(...)):
     if file.filename.endswith('.pdf'):
         text = await process_pdf(file)
