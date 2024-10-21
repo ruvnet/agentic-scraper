@@ -1,12 +1,12 @@
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 from bs4 import BeautifulSoup
 from fastapi import UploadFile
 
 async def process_pdf(file: UploadFile):
-    pdf_reader = PdfFileReader(await file.read())
+    pdf_reader = PdfReader(await file.read())
     text = ""
-    for page in range(pdf_reader.getNumPages()):
-        text += pdf_reader.getPage(page).extractText()
+    for page in pdf_reader.pages:
+        text += page.extract_text()
     return text
 
 async def process_html(file: UploadFile):
