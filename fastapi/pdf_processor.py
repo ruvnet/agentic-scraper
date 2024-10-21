@@ -1,9 +1,11 @@
 from PyPDF2 import PdfReader
 from bs4 import BeautifulSoup
 from fastapi import UploadFile
+import io
 
 async def process_pdf(file: UploadFile):
-    pdf_reader = PdfReader(await file.read())
+    content = await file.read()
+    pdf_reader = PdfReader(io.BytesIO(content))
     text = ""
     for page in pdf_reader.pages:
         text += page.extract_text()
